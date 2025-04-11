@@ -1,0 +1,8 @@
+
+
+✅ 3. Clean Up Old Logs (7+ days)
+#!/bin/bash
+LOG_DIR="/var/log"
+find $LOG_DIR -type f -name "*.log" -mtime +7 -exec rm -f {} \;
+echo "Old log files removed from $LOG_DIR"
+🔍 Why? Automate hygiene. Free up space before issues hit.
