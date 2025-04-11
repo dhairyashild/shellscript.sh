@@ -1,0 +1,6 @@
+
+✅ 1. Instant Disk Health Check
+#!/bin/bash
+echo "Disk Usage Summary:"
+df -h | awk '$5+0 > 70 {print $0}' | tee disk_alert.txt
+🔍 Why? Spot partitions above 70% usage — avoid surprises in prod!
