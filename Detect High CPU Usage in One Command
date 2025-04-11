@@ -1,0 +1,7 @@
+
+
+✅ 2. Detect High CPU Usage in One Command
+#!/bin/bash
+echo " High CPU Processes:"
+ps -eo pid,comm,%cpu --sort=-%cpu | head -n 6
+🔍 Why? Quickly pinpoint which process is hogging your server.
