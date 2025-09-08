@@ -1,5 +1,4 @@
 
-
 ✅ 3. Clean Up Old Logs (7+ days)
 #!/bin/bash
 LOG_DIR="/var/log"
