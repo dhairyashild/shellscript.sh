@@ -1,0 +1,84 @@
+# 1. IP WHITELIST RULE (HIGHEST PRIORITY)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add my own rules
+Rule type: IP set
+Name: allow-trusted-ips
+IP set: [Your trusted IP set]
+Action: Allow
+Priority: 1
+
+# 2. GEO-BLOCKING RULE
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add my own rules  
+Rule type: Geo match rule
+Name: block-countries
+Country codes: [CN, RU, KR, etc.]
+Action: Block
+Priority: 2
+
+# 3. RATE LIMITING RULES
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add my own rules
+Rule type: Rate-based rule
+Name: rate-limit-login
+Rate limit: 100
+Scope: URI contains /login
+Action: Block
+Priority: 3
+
+# 4. CORE RULE SET (FREE)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ Free rule groups
+→ Select: Core rule set
+Action: Block
+Priority: 4
+
+# 5. IP REPUTATION + ANONYMOUS IP (FREE)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ Free rule groups
+→ Select: Amazon IP reputation list
+Action: Block
+Priority: 5
+
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ Free rule groups  
+→ Select: Anonymous IP list
+Action: Block
+Priority: 6
+
+# 6. BOT CONTROL (PAID)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ AWS managed rule groups
+→ Select: Bot Control
+→ Protection level: Common
+Action: Block
+Priority: 7
+
+# 7. SQL DATABASE RULE (FREE)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ Free rule groups
+→ Select: SQL database
+Action: Block
+Priority: 8
+
+# 8. DDoS PROTECTION (PAID)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ AWS managed rule groups
+→ Select: AntiDDoS Protection for Layer 7 attacks
+Action: Block
+Priority: 9
+
+# 9. ACCOUNT PROTECTION RULES (PAID)
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add managed rule groups
+→ AWS managed rule groups
+→ Select: Account takeover prevention
+Action: Block
+Priority: 10
+
+# 10. CUSTOM RULES
+WAF → Web ACLs → Your Web ACL → Rules → Add rules → Add my own rules
+Rule type: Regular rule
+Name: block-sensitive-paths
+Match: URI contains /env,/config,/backup
+Action: Block
+Priority: 11
+
+# FINAL STEP FOR ALL:
+Review → Add rules → Save
